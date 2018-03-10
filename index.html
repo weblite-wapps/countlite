@@ -30,7 +30,7 @@
         width: 100px;
         height: 100px;
         border-radius: 25px;
-        background-color: black;
+        background-color: #263238;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,11 +76,15 @@
       numberView.style.fontSize = getNumberSize(number)
     }
 
-    // add number when click action happen
-    renderNumber(i)
-    rootView.onclick = function() {
+    // onclick function
+    function onclick() {
       i++
       renderNumber(i)
     }
+
+
+    // main
+    renderNumber(i)
+    rootView.onclick = onclick
   </script>
 </html>
