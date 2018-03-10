@@ -102,18 +102,29 @@
 
     // weblite customize onChangeValue function
     function onCustomizeChangeValue(o) {
-      o.key === 'backgroundColor' && changeBackgroundColor(o.value)
-      o.key === 'textColor' && changeTextColor(o.value)
+      const key = o.key; const value = o.value;
+      key === 'backgroundColor' && changeBackgroundColor(value)
+      key === 'textColor' && changeTextColor(value)
+    }
+
+    // main function
+    function main() {
+      // first time render
+      changeTheme()
+      renderNumber(i)
+
+      // binding actions
+      rootView.onclick = onclick
+      W.loadData().then(onLoadData)
+      W.onChangeValue(onCustomizeChangeValue)
+
+      // customize mode
+      W.mode === 'customize' && W.start()
     }
 
 
 
-    /* 3  communicate with weblite */
-    changeTheme()
-    renderNumber(i)
-    rootView.onclick = onclick
-    W.loadData().then(onLoadData)
-    W.onChangeValue(onCustomizeChangeValue)
-    W.mode === 'customize' && W.start()
+    /* 3  ruuning main */
+    main()
   </script>
 </html>
