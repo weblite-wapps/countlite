@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- head and styles -->
+  <head>
+    <meta charset="utf-8">
+    <title>Countlite</title>
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #root {
+        width: 100px;
+        height: 100px;
+        border-radius: 25px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #number {
+        color: white;
+        font-size: 50px;
+      }
+    </style>
+  </head>
+
+  <!-- html -->
+  <body>
+    <div id="root">
+      <span id="number">0</span>
+    </div>
+  </body>
+
+  <!-- javascript -->
+  <script>
+    // render numbe to screen
+    function renderNumber(number) {
+      document.getElementById('number').innerText = number
+    }
+
+    let i = 1
+    setInterval(function() {
+      renderNumber(i)
+      i++
+    }, 1)
+  </script>
+</html>
