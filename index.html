@@ -30,15 +30,10 @@
         width: 100px;
         height: 100px;
         border-radius: 25px;
-        background-color: #263238;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-      }
-
-      #number {
-        color: white;
       }
     </style>
   </head>
@@ -56,8 +51,16 @@
   <script>
     // get number element
     let i = 0
+    const W = window.W || { loadData: () => Promise.resolve(), start: () => {} }
     const numberView = document.getElementById('number')
     const rootView = document.getElementById('root')
+
+
+    // change theme
+    function changeTheme(backgroundColor, textColor) {
+      rootView.style.backgroundColor = backgroundColor
+      numberView.style.color = textColor
+    }
 
     // get number size based on number value
     function getNumberSize (number) {
@@ -83,7 +86,13 @@
     }
 
 
+    // weblite apis
+    W.loadData().then(function (data) {
+      console.log(data)
+    })
+
     // main
+    changeTheme('#263238', 'white')
     renderNumber(i)
     rootView.onclick = onclick
   </script>

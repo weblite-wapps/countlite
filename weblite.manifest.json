@@ -1,0 +1,13 @@
+{
+  "name": "countlite",
+  "instancable": true,
+  "creator": false,
+  "userInfo": false,
+  "inline": true,
+  "width": 100,
+  "height": 100,
+  "customizeArray": [
+    { "type": "color", "name": "backgroundColor", "title": "background color" },
+    { "type": "color", "name": "textColor", "title": "text color" }
+  ]
+}
