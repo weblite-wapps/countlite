@@ -4,6 +4,7 @@
   <!-- head and styles -->
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countlite</title>
     <style>
       html, body {
@@ -16,6 +17,15 @@
         align-items: center;
       }
 
+      .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
       #root {
         width: 100px;
         height: 100px;
@@ -24,33 +34,53 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
       }
 
       #number {
         color: white;
-        font-size: 50px;
       }
     </style>
   </head>
 
+
   <!-- html -->
   <body>
-    <div id="root">
-      <span id="number">0</span>
+    <div id="root" class="noselect">
+      <span id="number"></span>
     </div>
   </body>
 
+
   <!-- javascript -->
   <script>
-    // render numbe to screen
-    function renderNumber(number) {
-      document.getElementById('number').innerText = number
+    // get number element
+    let i = 0
+    const numberView = document.getElementById('number')
+    const rootView = document.getElementById('root')
+
+    // get number size based on number value
+    function getNumberSize (number) {
+      if (number < 100) return '60px'
+      else if (number >= 100 && number < 1000) return '50px'
+      else if (number >= 1000 && number < 10000) return '43px'
+      else if (number >= 10000 && number < 100000) return '37px'
+      else if (number >= 100000 && number < 1000000) return '30px'
+      else if (number >= 1000000 && number < 10000000) return '26px'
+      return '20px'
     }
 
-    let i = 1
-    setInterval(function() {
-      renderNumber(i)
+    // render number to page and set size of number
+    function renderNumber(number) {
+      numberView.innerText = number
+      numberView.style.fontSize = getNumberSize(number)
+    }
+
+    // add number when click action happen
+    renderNumber(i)
+    rootView.onclick = function() {
       i++
-    }, 1)
+      renderNumber(i)
+    }
   </script>
 </html>
