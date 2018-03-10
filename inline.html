@@ -94,27 +94,26 @@
       renderNumber(i)
     }
 
+    // webltie onLoadData function
+    function onLoadData(data) {
+      changeTheme(data.customize.backgroundColor, data.customize.textColor)
+      W.start()
+    }
+
+    // weblite customize onChangeValue function
+    function onCustomizeChangeValue(o) {
+      o.key === 'backgroundColor' && changeBackgroundColor(o.value)
+      o.key === 'textColor' && changeTextColor(o.value)
+    }
+
 
 
     /* 3  communicate with weblite */
-    // on load data
-    W.loadData().then(function (data) {
-      changeTheme(data.customize.backgroundColor, data.customize.textColor)
-      W.start()
-    })
-
-    // on customize
-    W.onChangeValue(function(o) {
-      o.key === 'backgroundColor' && changeBackgroundColor(o.value)
-      o.key === 'textColor' && changeTextColor(o.value)
-    })
-
-
-
-    /* 4  communicate with weblite */
     changeTheme()
     renderNumber(i)
     rootView.onclick = onclick
+    W.loadData().then(onLoadData)
+    W.onChangeValue(onCustomizeChangeValue)
     W.mode === 'customize' && W.start()
   </script>
 </html>
