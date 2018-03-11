@@ -37,10 +37,7 @@ function renderNumber(number) {
 }
 
 // onclick function
-function onclick() {
-  i++
-  renderNumber(i)
-}
+function onclick() { W.share.dispatch(['number'], ['__add', [1]], 0) }
 
 // webltie onLoadData function
 function onLoadData(data) {
@@ -65,6 +62,8 @@ function main() {
   rootView.onclick = onclick
   W.loadData().then(onLoadData)
   W.onChangeValue(onCustomizeChangeValue)
+  W.share.getFromServer(['number'])
+  W.share.subscribe(db => renderNumber(db.number || 0))
 
   // customize mode
   W.mode === 'customize' && W.start()
