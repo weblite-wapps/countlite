@@ -42,7 +42,6 @@ function onclick() { W.share.dispatch(['number'], ['__add', [1]], 0) }
 // webltie onLoadData function
 function onLoadData(data) {
   changeTheme(data.customize.backgroundColor, data.customize.textColor)
-  W.start()
 }
 
 // weblite customize onChangeValue function
@@ -52,24 +51,28 @@ function onCustomizeChangeValue(o) {
   key === 'textColor' && changeTextColor(value)
 }
 
-// main function
-function main() {
+// after db get
+function afterGet() { W.start() }
+
+
+
+/* 3  main */
+(function main() {
   // first time render
   changeTheme()
   renderNumber(i)
 
-  // binding actions
+  // onclick, loadData and shareDBSubscribe
   rootView.onclick = onclick
   W.loadData().then(onLoadData)
-  W.onChangeValue(onCustomizeChangeValue)
-  W.share.getFromServer(['number'])
   W.share.subscribe(db => renderNumber(db.number || 0))
+
+
+  // get data from db
+  W.share.getFromServer(['number']).then(afterGet)
+
 
   // customize mode
   W.mode === 'customize' && W.start()
-}
-
-
-
-/* 3  ruuning main */
-main()
+  W.onChangeValue(onCustomizeChangeValue)
+})()
