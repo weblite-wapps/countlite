@@ -8,6 +8,8 @@
   "width": 100,
   "height": 100,
   "customizeArray": [
+    { "type": "upload", "name": "backgroundTopic", "title": "background image", "detail": { "label": "Click to upload" } },
+    { "type": "upload", "name": "file", "title": "uploaded file" },
     { "type": "color", "name": "backgroundColor", "title": "background color" },
     { "type": "color", "name": "textColor", "title": "text color" }
   ]

@@ -46,6 +46,7 @@ function onLoadData(data) {
 
 // weblite customize onChangeValue function
 function onCustomizeChangeValue(o) {
+  console.log('cuschanval', o)
   const key = o.key; const value = o.value;
   key === 'backgroundColor' && changeBackgroundColor(value)
   key === 'textColor' && changeTextColor(value)
