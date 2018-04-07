@@ -75,4 +75,5 @@ function afterGet() { W.start() }
   // customize mode
   W.mode === 'customize' && W.start()
   W.onChangeValue(onCustomizeChangeValue)
+  W.changeCustomize(R.identity)
 })()
