@@ -37,7 +37,7 @@ function renderNumber(number) {
 }
 
 // onclick function
-function onclick() { W.share.dispatch(['number'], ['__add', [1]], 0) }
+function onclick() { W.share.dispatch([], ['__add', [1]], 0) }
 
 // webltie onLoadData function
 function onLoadData(data) {
@@ -65,11 +65,11 @@ function afterGet() { W.start() }
   // onclick, loadData and shareDBSubscribe
   rootView.onclick = onclick
   W.loadData().then(onLoadData)
-  W.share.subscribe(db => renderNumber(db.number || 0))
+  W.share.subscribe(db => renderNumber(db || 0))
 
 
   // get data from db
-  W.share.getFromServer(['number']).then(afterGet)
+  W.share.getFromServer([]).then(afterGet)
 
 
   // customize mode
