@@ -3,6 +3,7 @@
   "instancable": true,
   "creator": false,
   "userInfo": false,
+  "fullscreen": false,
   "inline": true,
   "shareDB": true,
   "width": 100,
@@ -10,5 +11,10 @@
   "customizeArray": [
     { "type": "color", "name": "backgroundColor", "title": "background color" },
     { "type": "color", "name": "textColor", "title": "text color" }
-  ]
+  ],
+  "servIndexes": {
+    "inline": "index",
+    "customize": "index",
+    "main": "index"
+  }
 }
