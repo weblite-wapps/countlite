@@ -1,12 +1,13 @@
 {
   "name": "countlite",
-  "id": "5b267b1b41c7fd9a43d84323",
+  "id": "5b795fad11619309946f0e29",
   "instancable": true,
   "creator": false,
   "userInfo": false,
   "fullscreen": false,
   "inline": true,
   "shareDB": true,
+  "searchable": true,
   "width": 100,
   "height": 100,
   "customizeArray": [
