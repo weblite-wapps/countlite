@@ -1,10 +1,10 @@
 {
   "name": "countlite",
-  "id": "5b9e00734289e07cc90e6016",
+  "id": "5bb0dd20d0ff005bfdde2f77",
   "instancable": true,
   "creator": false,
   "userInfo": false,
-  "fullscreen": false,
+  "fullscreen": true,
   "inline": true,
   "shareDB": true,
   "searchable": true,
@@ -17,6 +17,7 @@
   "servIndexes": {
     "inline": "index",
     "customize": "index",
-    "main": "index"
+    "main": "index",
+    "fullscreen": "index"
   }
 }
