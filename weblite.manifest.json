@@ -1,23 +1,35 @@
 {
   "name": "countlite",
-  "id": "5bd2d68cae53f052e6868360",
+  "id": "5c4c2e30e50e46486b155fc7",
+  "searchable": true,
   "instancable": true,
   "creator": false,
   "userInfo": false,
   "fullscreen": true,
   "inline": true,
   "shareDB": true,
-  "searchable": true,
   "width": 100,
   "height": 100,
+  "description": "This is countLite. Developers BFF, at your service ;)",
   "customizeArray": [
-    { "type": "color", "name": "backgroundColor", "title": "background color" },
-    { "type": "color", "name": "textColor", "title": "text color" }
+    {
+      "type": "color",
+      "default": "#000000",
+      "name": "backgroundColor",
+      "title": "background color"
+    },
+    {
+      "type": "color",
+      "default": "#D33115",
+      "name": "textColor",
+      "title": "text color"
+    }
   ],
   "servIndexes": {
     "inline": "index",
     "customize": "index",
     "main": "index",
     "fullscreen": "index"
-  }
+  },
+  "version": "1.0.0"
 }

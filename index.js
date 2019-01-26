@@ -4,8 +4,6 @@ const W = window.W || { loadData: () => Promise.resolve(), start: () => {} }
 const numberView = document.getElementById('number')
 const rootView = document.getElementById('root')
 
-
-
 /* 2  defining functions */
 // change theme
 function changeBackgroundColor(backgroundColor = '#263238') {
@@ -20,7 +18,7 @@ function changeTheme(backgroundColor, textColor) {
 }
 
 // get number size based on number value
-function getNumberSize (number) {
+function getNumberSize(number) {
   if (number < 100) return '60px'
   else if (number >= 100 && number < 1000) return '50px'
   else if (number >= 1000 && number < 10000) return '43px'
@@ -37,7 +35,9 @@ function renderNumber(number) {
 }
 
 // onclick function
-function onclick() { W.share.dispatch([], ['__add', [1]], 0) }
+function onclick() {
+  W.share.dispatch([], ['__add', [1]], 0)
+}
 
 // webltie onLoadData function
 function onLoadData(data) {
@@ -46,18 +46,19 @@ function onLoadData(data) {
 
 // weblite customize onChangeValue function
 function onCustomizeChangeValue(o) {
-  const key = o.key; const value = o.value;
+  const key = o.key
+  const value = o.value
   key === 'backgroundColor' && changeBackgroundColor(value)
   key === 'textColor' && changeTextColor(value)
 }
 
 // after db get
-function afterGet() { W.start() }
-
-
+function afterGet() {
+  W.start()
+}
 
 /* 3  main */
-(function main() {
+;(function main() {
   // first time render
   changeTheme()
   renderNumber(i)
@@ -67,10 +68,8 @@ function afterGet() { W.start() }
   W.loadData().then(onLoadData)
   W.share.subscribe(db => renderNumber(db || 0))
 
-
   // get data from db
   W.share.getFromServer([]).then(afterGet)
-
 
   // customize mode
   W.mode === 'customize' && W.start()
