@@ -1,11 +1,11 @@
 {
   "name": "countlite",
   "id": "5c4c2e30e50e46486b155fc7",
-  "searchable": true,
   "instancable": true,
+  "searchable": true,
+  "fullscreen": true,
   "creator": false,
   "userInfo": false,
-  "fullscreen": true,
   "inline": true,
   "shareDB": true,
   "width": 100,
@@ -31,5 +31,5 @@
     "main": "index",
     "fullscreen": "index"
   },
-  "version": "1.0.0"
+  "version": "1.0.2"
 }

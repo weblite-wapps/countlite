@@ -1,5 +1,4 @@
 /* 1  defining constant */
-let i = 0
 const W = window.W || { loadData: () => Promise.resolve(), start: () => {} }
 const numberView = document.getElementById('number')
 const rootView = document.getElementById('root')
@@ -9,9 +8,11 @@ const rootView = document.getElementById('root')
 function changeBackgroundColor(backgroundColor = '#263238') {
   rootView.style.backgroundColor = backgroundColor
 }
+
 function changeTextColor(textColor = 'white') {
   numberView.style.color = textColor
 }
+
 function changeTheme(backgroundColor, textColor) {
   changeBackgroundColor(backgroundColor)
   changeTextColor(textColor)
@@ -20,11 +21,11 @@ function changeTheme(backgroundColor, textColor) {
 // get number size based on number value
 function getNumberSize(number) {
   if (number < 100) return '60px'
-  else if (number >= 100 && number < 1000) return '50px'
-  else if (number >= 1000 && number < 10000) return '43px'
-  else if (number >= 10000 && number < 100000) return '37px'
-  else if (number >= 100000 && number < 1000000) return '30px'
-  else if (number >= 1000000 && number < 10000000) return '26px'
+  if (number >= 100 && number < 1000) return '50px'
+  if (number >= 1000 && number < 10000) return '43px'
+  if (number >= 10000 && number < 100000) return '37px'
+  if (number >= 100000 && number < 1000000) return '30px'
+  if (number >= 1000000 && number < 10000000) return '26px'
   return '20px'
 }
 
@@ -45,34 +46,38 @@ function onLoadData(data) {
 }
 
 // weblite customize onChangeValue function
-function onCustomizeChangeValue(o) {
-  const key = o.key
-  const value = o.value
-  key === 'backgroundColor' && changeBackgroundColor(value)
-  key === 'textColor' && changeTextColor(value)
+function onCustomizeValueChange({ key, value }) {
+  if (key === 'backgroundColor') changeBackgroundColor(value)
+  if (key === 'textColor') changeTextColor(value)
 }
 
-// after db get
-function afterGet() {
-  W.start()
+const hooks = {
+  wappWillStart: (start, error, { mode }) => {
+    // first time render
+    renderNumber(0)
+    // on click
+    rootView.onclick = onclick
+    // customize mode
+    if (mode === 'customize') {
+      start()
+      return
+    }
+
+    // shareDBSubscribe
+    W.share.subscribe(db => renderNumber(db || 0))
+    // start when both localDB and shareDB datas are ready
+    Promise.all([W.loadData(), W.share.getFromServer([])]).then(([data]) => {
+      onLoadData(data)
+      start()
+    })
+  },
+
+  onCustomizeValueChange,
+
+  onError: () => 'show',
 }
 
 /* 3  main */
 ;(function main() {
-  // first time render
-  changeTheme()
-  renderNumber(i)
-
-  // onclick, loadData and shareDBSubscribe
-  rootView.onclick = onclick
-  W.loadData().then(onLoadData)
-  W.share.subscribe(db => renderNumber(db || 0))
-
-  // get data from db
-  W.share.getFromServer([]).then(afterGet)
-
-  // customize mode
-  W.mode === 'customize' && W.start()
-  W.onChangeValue(onCustomizeChangeValue)
-  W.changeCustomize(R.identity)
+  W.setHooks(hooks)
 })()
