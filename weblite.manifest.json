@@ -1,7 +1,7 @@
 {
   "name": "countlite",
   "id": "5c4c2e30e50e46486b155fc7",
-  "instancable": true,
+  "instantiable": true,
   "searchable": true,
   "fullscreen": true,
   "creator": false,
