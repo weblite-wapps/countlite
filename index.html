@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <!-- head and styles -->
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Countlite</title>
-  </head>
-  <!-- html -->
-  <body>
-    <div id="root" class="noselect"><span id="number"></span></div>
-  </body>
+<!-- head and styles -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Countlite</title>
+</head>
+<!-- html -->
+
+<body>
+  <div id="root" class="noselect"><span id="number"></span></div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-firestore.js"></script>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyCidg6sLy2m4U0sAFaG8TZBwOsrcwLn7x8",
+      authDomain: "countlite-31e8e.firebaseapp.com",
+      databaseURL: "https://countlite-31e8e.firebaseio.com",
+      projectId: "countlite-31e8e",
+      storageBucket: "",
+      messagingSenderId: "659902535516",
+      appId: "1:659902535516:web:4eae03456b2ac2f0"
+    };
+    // Initialize Firebase
+    var app = firebase.initializeApp(firebaseConfig);
+  </script>
+
   <!-- javascript -->
   <script src="index.js"></script>
+
+
+</body>
+
 </html>

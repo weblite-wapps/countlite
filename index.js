@@ -1,5 +1,14 @@
+
+
+
+// const preObject = document.getElementById('object')
+
+var starCountRef = firebase.database().ref('/ID1/oFjuQDw1TcjZedBXR5Lf');
+
+starCountRef.on('value', snapshot => console.log(snapshot));
+
 /* 1  defining constant */
-const W = window.W || { loadData: () => Promise.resolve(), start: () => {} }
+const W = window.W || { loadData: () => Promise.resolve(), start: () => { } }
 const numberView = document.getElementById('number')
 const rootView = document.getElementById('root')
 
@@ -35,9 +44,17 @@ function renderNumber(number) {
   numberView.style.fontSize = getNumberSize(number)
 }
 
+var database = firebase.database();
+
+var wisId = 'tempWisId'
 // onclick function
 function onclick() {
-  W.share.dispatch([], ['__add', [1]], 0)
+  // W.share.dispatch([], ['__add', [1]], 0)
+  firebase.database().ref('countlites/' + wisId).set({
+    wisId,
+    countNum: parseInt(numberView.innerText) + 1,
+  });
+  // numberView.innerText = parseInt(numberView.innerText) + 1
 }
 
 // webltie onLoadData function
@@ -51,33 +68,37 @@ function onCustomizeValueChange({ key, value }) {
   if (key === 'textColor') changeTextColor(value)
 }
 
-const hooks = {
-  wappWillStart: (start, error, { mode }) => {
-    // first time render
-    renderNumber(0)
-    // on click
-    rootView.onclick = onclick
-    // customize mode
-    if (mode === 'customize') {
-      start()
-      return
-    }
 
-    // shareDBSubscribe
-    W.share.subscribe(db => renderNumber(db || 0))
-    // start when both localDB and shareDB datas are ready
-    Promise.all([W.loadData(), W.share.getFromServer([])]).then(([data]) => {
-      onLoadData(data)
-      start()
-    })
-  },
+renderNumber(0)
+rootView.onclick = onclick
 
-  onCustomizeValueChange,
+// const hooks = {
+//   wappWillStart: (start, error, { mode }) => {
+//     // first time render
+//     renderNumber(0)
+//     // on click
+//     rootView.onclick = onclick
+//     // customize mode
+//     if (mode === 'customize') {
+//       start()
+//       return
+//     }
 
-  onError: () => 'show',
-}
+//     // shareDBSubscribe
+//     W.share.subscribe(db => renderNumber(db || 0))
+//     // start when both localDB and shareDB datas are ready
+//     Promise(W.loadData()).then((data) => {
+//       onLoadData(data)
+//       start()
+//     })
+//   },
+
+//   onCustomizeValueChange,
+
+//   onError: () => 'show',
+// }
 
 /* 3  main */
-;(function main() {
-  W.setHooks(hooks)
-})()
+// ;(function main() {
+//   W.setHooks(hooks)
+// })()
